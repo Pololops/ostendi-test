@@ -1,7 +1,7 @@
 .tab__title {
   display: inline-block;
   padding: 0.7rem 1rem 0.3rem;
-  color: lightskyblue;
+  color: rgb(0, 157, 255);
   cursor: pointer; 
   border-bottom-style: solid;
   border-bottom-width: 2px;  
@@ -9,11 +9,15 @@
 }
 
 .tab__title:hover {
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(243, 243, 243);
 }
 
 .tab__title--active {
   color: black;
   background-color: rgb(190, 190, 190);
   border-color: rgb(0, 157, 255);  
+}
+
+.tab__title--active:hover {
+    background-color: rgb(168, 167, 167);
 }

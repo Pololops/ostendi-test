@@ -1,11 +1,15 @@
+import {useEffect} from 'react';
+
+import {useTabsContext} from '../../context/tabsContext';
+import {ACTION_TYPES} from '../../reducer/tabsReducer';
+
 import OsiTabs from '../OsiTabs/OsiTabs';
 import OsiTab from '../OsiTab/OsiTab';
-import {useTabsContext} from '../../context/tabsContext';
 
 import './App.module.css';
 
 function App() {
-  const {tabs} = useTabsContext();
+  const {tabs, tabsDispatch} = useTabsContext();
 
   const mappedTabs = (tabs: TabType[]) =>
     tabs.map((tab) => {
@@ -24,6 +28,10 @@ function App() {
         </OsiTab>
       );
     });
+
+  useEffect(() => {
+    tabsDispatch({type: ACTION_TYPES.TOGGLE_ACTIVE});
+  }, []);
 
   return (
     <OsiTabs id="tabs_0" label="Root tab bar">

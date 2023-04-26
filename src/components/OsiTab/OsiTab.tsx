@@ -1,5 +1,5 @@
 import {ACTION_TYPES} from '../../reducer/tabsReducer';
-import { useTabsContext } from '../../context/tabsContext';
+import {useTabsContext} from '../../context/tabsContext';
 
 import './OsiTab.css';
 
@@ -17,21 +17,15 @@ export default function OsiTab({id, label, children, isActive}: Props) {
     tabsDispatch({type: ACTION_TYPES.TOGGLE_ACTIVE, payload: {id}});
   };
 
-  // useEffect(() => {
-  //   if (id.match(/1$/)) {
-  //     setIsActive(true);
-  //   }
-  // }, [id]);
-
   return (
     <li id={id} className="tab">
       <span
         className={isActive ? 'tab__title tab__title--active' : 'tab__title'}
         onClick={handleClick}
       >
-        {id}
+        {label + ' ' + isActive}
       </span>
-      {isActive && children}
+      {children}
     </li>
   );
 }

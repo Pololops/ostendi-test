@@ -2,8 +2,9 @@
   display: flex;
   position: absolute;
   left: 0;
+  right: 0;
+  width: 100%;
   flex-flow: row nowrap;
   color: lightskyblue;
-  width: 100%;
   border-bottom: 1px solid lightgray;
 }
