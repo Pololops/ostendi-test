@@ -1,7 +1,7 @@
 import {createContext, useContext, useReducer} from 'react';
 
-import initialState from '../store/initialState';
-import tabsReducer, { TabsReducerAction } from '../reducer/tabsReducer';
+import initialState from '../state/tabState';
+import tabsReducer, {TabsReducerAction} from '../reducers/tabsReducer';
 
 type ContextType = {
   tabs: TabType[];

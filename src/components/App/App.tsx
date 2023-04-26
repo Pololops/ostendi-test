@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
-import {useTabsContext} from '../../context/tabsContext';
-import {ACTION_TYPES} from '../../reducer/tabsReducer';
+import {useTabsContext} from '../../contexts/tabsContext';
+import {ACTION_TYPES} from '../../reducers/tabsReducer';
 
 import OsiTabs from '../OsiTabs/OsiTabs';
 import OsiTab from '../OsiTab/OsiTab';

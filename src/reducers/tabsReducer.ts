@@ -1,4 +1,4 @@
-import initialState from '../store/initialState';
+import initialState from '../state/tabState';
 import { toggleTabActivation } from '../utils/tabsUtils';
 
 export enum ACTION_TYPES {

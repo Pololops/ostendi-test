@@ -1,5 +1,5 @@
-import {ACTION_TYPES} from '../../reducer/tabsReducer';
-import {useTabsContext} from '../../context/tabsContext';
+import {ACTION_TYPES} from '../../reducers/tabsReducer';
+import {useTabsContext} from '../../contexts/tabsContext';
 
 import './OsiTab.css';
 
