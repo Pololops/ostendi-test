@@ -1,6 +1,6 @@
 import {createContext, useContext, useReducer} from 'react';
 
-import initialState from '../state/tabState';
+import initialState from '../states/tabState';
 import tabsReducer, {TabsReducerAction} from '../reducers/tabsReducer';
 
 type ContextType = {
