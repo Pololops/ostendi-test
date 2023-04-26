@@ -1,0 +1,19 @@
+.tab__title {
+  display: inline-block;
+  padding: 0.7rem 1rem 0.3rem;
+  color: lightskyblue;
+  cursor: pointer; 
+  border-bottom-style: solid;
+  border-bottom-width: 2px;  
+  border-color: transparent;
+}
+
+.tab__title:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.tab__title--active {
+  color: black;
+  background-color: rgb(190, 190, 190);
+  border-color: rgb(0, 157, 255);  
+}
