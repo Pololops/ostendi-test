@@ -1,4 +1,4 @@
-const initialState: TabType[] = [
+const initialTabsState: TabType[] = [
   {
     id: 'tab_1',
     label: 'Tab 1',
@@ -99,4 +99,4 @@ const initialState: TabType[] = [
   }
 ];
 
-export default initialState;
+export default initialTabsState;

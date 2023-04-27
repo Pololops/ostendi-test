@@ -1,15 +1,16 @@
 import {useEffect} from 'react';
+import {useGlobalContext} from '../../hooks/useGlobalContext';
 
-import {useTabsContext} from '../../contexts/tabsContext';
-import {ACTION_TYPES} from '../../reducers/tabsReducer';
+import {TABS_ACTION_TYPES} from '../../reducers/tabsReducer';
 
+import Header from '../Header/Header';
 import OsiTabs from '../OsiTabs/OsiTabs';
 import OsiTab from '../OsiTab/OsiTab';
 
 import './App.module.css';
 
 function App() {
-  const {tabs, tabsDispatch} = useTabsContext();
+  const {tabs, tabsDispatch} = useGlobalContext();
 
   const mappedTabs = (tabs: TabType[]) =>
     tabs.map((tab) => {
@@ -30,13 +31,16 @@ function App() {
     });
 
   useEffect(() => {
-    tabsDispatch({type: ACTION_TYPES.TOGGLE_ACTIVE});
+    tabsDispatch({type: TABS_ACTION_TYPES.TOGGLE_ACTIVE});
   }, []);
 
   return (
-    <OsiTabs id="tabs_0" label="Root tab bar">
-      {tabs.length > 0 && mappedTabs(tabs)}
-    </OsiTabs>
+    <>
+      <Header />
+      <OsiTabs id="tabs_0" label="Root tab bar">
+        {tabs.length > 0 && mappedTabs(tabs)}
+      </OsiTabs>
+    </>
   );
 }
 
