@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router';
 import './OsiTabs.css';
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 export default function OsiTabs({id, children}: Props) {
   return (
     <ul id={id} className={'tabs'}>
-      {children}
+      <Outlet />
     </ul>
   );
 }

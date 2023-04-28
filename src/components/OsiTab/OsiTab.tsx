@@ -3,6 +3,7 @@ import {ROUTES_ACTION_TYPES} from '../../reducers/routesReducer';
 import {useGlobalContext} from '../../hooks/useGlobalContext';
 
 import './OsiTab.css';
+import { Outlet } from 'react-router';
 
 type Props = {
   id: string;
@@ -17,7 +18,6 @@ export default function OsiTab({
   label,
   children,
   isActive,
-  onClick
 }: Props) {
   const {tabsDispatch, routesDispatch} = useGlobalContext();
 
@@ -33,9 +33,9 @@ export default function OsiTab({
       <span
         className={isActive ? 'tab__title tab__title--active' : 'tab__title'}
       >
-        {label + ' ' + isActive}
+        {label}
       </span>
-      {children}
+        <Outlet />
     </li>
   );
 }

@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {MemoryRouter} from 'react-router-dom';
+import {RouterProvider} from 'react-router-dom';
 
-import App from './components/App/App.tsx';
 import TabsProvider from './contexts/globalContext.tsx';
+
+import {router} from './router/router.tsx';
 
 import './styles/reset.css';
 import './styles/index.css';
+import App from './components/App/App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <TabsProvider>
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <RouterProvider router={router} />
     </TabsProvider>
   </React.StrictMode>
 );
