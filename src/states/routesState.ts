@@ -1,3 +1,3 @@
-const initialRoutesState: string[] = ['test', 'test2', 'test3'];
+const initialRoutesState: string[] = ['tabs_0'];
 
 export default initialRoutesState;

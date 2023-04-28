@@ -15,18 +15,27 @@ function App() {
   const mappedTabs = (tabs: TabType[]) =>
     tabs.map((tab) => {
       return (
-        <OsiTab
-          key={tab.id}
-          id={tab.id}
-          label={tab.label}
-          isActive={tab.isActive}
-        >
-          {tab.children && tab.isActive && (
-            <OsiTabs key={tab.id} id={tab.id} label={tab.label}>
-              {mappedTabs(tab.children)}
-            </OsiTabs>
-          )}
-        </OsiTab>
+        <OsiTabs key={tab.id} id={tab.id} label={tab.label}>
+          {tab.children && 
+            tab.children.map((child) => {
+              return (
+                <OsiTab
+                  key={child.id}
+                  id={child.id}
+                  label={child.label}
+                  isActive={child.isActive}
+                  onClick={() =>
+                    tabsDispatch({
+                      type: TABS_ACTION_TYPES.TOGGLE_ACTIVE,
+                      payload: {id: child.id}
+                    })
+                  }
+                >
+                  {child.children && child.isActive && mappedTabs(child.children)}
+                </OsiTab>
+              );
+            })}
+        </OsiTabs>
       );
     });
 
@@ -37,9 +46,7 @@ function App() {
   return (
     <>
       <Header />
-      <OsiTabs id="tabs_0" label="Root tab bar">
-        {tabs.length > 0 && mappedTabs(tabs)}
-      </OsiTabs>
+      {tabs.length > 0 && mappedTabs(tabs)}
     </>
   );
 }
