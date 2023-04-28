@@ -33,7 +33,7 @@ export default function OsiTab({
       <span
         className={isActive ? 'tab__title tab__title--active' : 'tab__title'}
       >
-        {label + ' ' + isActive}
+        {label}
       </span>
       {children}
     </li>
