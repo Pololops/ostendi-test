@@ -6,10 +6,10 @@ export const formatRoute = (id: string) => {
     let baseTabsId = (index < array.length - 1) ? '/tabs_' : '';
 
     for (let i = 0; i <= index; i++) {
-      baseTabId += (i < index) ? `${array[i]}.` : `${array[i]}`;
+      baseTabId += (i < index) ? `${array[i]}_` : `${array[i]}`;
 
       if (index < array.length - 1) {
-        baseTabsId += (i < index) ? `${array[i]}.` : `${array[i]}`;
+        baseTabsId += (i < index) ? `${array[i]}_` : `${array[i]}`;
       }
     }
 
