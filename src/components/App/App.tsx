@@ -16,7 +16,7 @@ function App() {
     tabs.map((tab) => {
       return (
         <OsiTabs key={tab.id} id={tab.id} label={tab.label}>
-          {tab.children && 
+          {tab.children &&
             tab.children.map((child) => {
               return (
                 <OsiTab
@@ -31,7 +31,9 @@ function App() {
                     })
                   }
                 >
-                  {child.children && child.isActive && mappedTabs(child.children)}
+                  {child.children &&
+                    child.isActive &&
+                    mappedTabs(child.children)}
                 </OsiTab>
               );
             })}

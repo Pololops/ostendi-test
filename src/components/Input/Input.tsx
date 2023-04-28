@@ -1,9 +1,10 @@
-import {useGlobalContext} from '../../hooks/useGlobalContext';
-
 import './Input.css';
 
-export default function Input() {
-  const {routes} = useGlobalContext();
+type Props = {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-  return <input type="text" value={`tabs_0${routes[0]}`} disabled />;
+export default function Input({value, onChange}: Props) {
+  return <input type="text" value={value} onChange={onChange} />;
 }
