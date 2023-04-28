@@ -1,50 +1,37 @@
-import {createMemoryRouter} from 'react-router';
+import {Outlet, RouteObject, createMemoryRouter} from 'react-router';
 
 import tabs from '../states/tabState';
 
 import App from '../components/App/App';
-import OsiTabs from '../components/OsiTabs/OsiTabs';
-import OsiTab from '../components/OsiTab/OsiTab';
 
-type RouteType = {
-  path: string;
-  element: JSX.Element;
-  children?: RouteType[];
-};
-
-const mappedRoutes = (tabs: TabType[]): RouteType[] => {
-  return tabs.map((tab) => ({
-    path: tab.id,
-    element: (
-      <OsiTabs key={tab.id} id={tab.id} label={tab.label}/>    
-    ),
-    children: tab.children?.map((child) => ({
-      path: child.id,
-      element: (
-        <OsiTab key={child.id} id={child.id} label={child.label}/>
-      ),
+const mappedRoutes = (tabs: TabType[]): RouteObject[] => {
+  return tabs.map(({children}) => ({
+    path: `:id`,
+    element: <Outlet />,
+    children: children?.map((child) => ({
+      path: `:id`,
       children: child.children && mappedRoutes(child.children)
     }))
   }));
 };
 
-console.log(mappedRoutes(tabs));
-
+// const FAKE_EVENT = {name: 'test event'};
 const routes = [
   {
-    path: '/',
+    path: '/tabs_0',
     element: <App />,
+    // loader: () => FAKE_EVENT,
     children: mappedRoutes(tabs)
   }
 ];
 
 export const router = createMemoryRouter(routes, {
   initialEntries: [
-    '/',
     '/tabs_0',
     '/tabs_0/tab_1',
     '/tabs_0/tab_1/tabs_1/tab_1_1',
     '/tabs_0/tab_1/tabs_1/tab_1_1/tabs_1_1/tab_1_1_1',
+    '/tabs_0/tab_2/tabs_2/tab_2_1'
   ],
-  initialIndex: 4
+  initialIndex: 0
 });

@@ -8,7 +8,6 @@ import {router} from './router/router.tsx';
 
 import './styles/reset.css';
 import './styles/index.css';
-import App from './components/App/App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

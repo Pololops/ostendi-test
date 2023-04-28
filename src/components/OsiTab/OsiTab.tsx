@@ -1,41 +1,30 @@
-import {TABS_ACTION_TYPES} from '../../reducers/tabsReducer';
-import {ROUTES_ACTION_TYPES} from '../../reducers/routesReducer';
-import {useGlobalContext} from '../../hooks/useGlobalContext';
+// import {TABS_ACTION_TYPES} from '../../reducers/tabsReducer';
+// import {useGlobalContext} from '../../hooks/useGlobalContext';
 
 import './OsiTab.css';
-import { Outlet } from 'react-router';
+import {NavLink} from 'react-router-dom';
 
 type Props = {
   id: string;
   label: string;
   children?: React.ReactNode;
-  isActive?: boolean;
-  onClick?: () => void;
 };
 
-export default function OsiTab({
-  id,
-  label,
-  children,
-  isActive,
-}: Props) {
-  const {tabsDispatch, routesDispatch} = useGlobalContext();
+export default function OsiTab({id, label, children}: Props) {
+  // const {tabsDispatch} = useGlobalContext();
 
-  const handleClick = (event: any) => {
-    event.preventDefault();
-    event.stopPropagation();
-    tabsDispatch({type: TABS_ACTION_TYPES.TOGGLE_ACTIVE, payload: {id}});
-    routesDispatch({type: ROUTES_ACTION_TYPES.ADD_ROUTE, payload: {id}});
-  };
+  // const handleClick = (event: any) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   tabsDispatch({type: TABS_ACTION_TYPES.TOGGLE_ACTIVE, payload: {id}});
+  // };
 
   return (
-    <li id={id} className="tab" onClick={handleClick}>
-      <span
-        className={isActive ? 'tab__title tab__title--active' : 'tab__title'}
-      >
+    <li id={id} className="tab">
+      <NavLink to={id} className="tab__title">
         {label}
-      </span>
-        <Outlet />
+      </NavLink>
+      {children}
     </li>
   );
 }

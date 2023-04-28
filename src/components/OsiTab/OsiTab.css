@@ -12,12 +12,12 @@
   background-color: rgb(243, 243, 243);
 }
 
-.tab__title--active {
+.tab__title.active {
   color: black;
   background-color: rgb(190, 190, 190);
   border-color: rgb(0, 157, 255);  
 }
 
-.tab__title--active:hover {
+.tab__title.active:hover {
     background-color: rgb(168, 167, 167);
 }
