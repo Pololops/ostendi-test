@@ -5,6 +5,7 @@
   gap: 1rem;
   padding: 1.5rem;
   border-bottom: 1px solid lightgray;
+  margin-bottom: calc(-2rem - 3px);
 }
 
 .header__form {

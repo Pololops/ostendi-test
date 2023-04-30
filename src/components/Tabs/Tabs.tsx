@@ -2,44 +2,101 @@
 // import {useGlobalContext} from '../../hooks/useGlobalContext';
 
 // import {TABS_ACTION_TYPES} from '../../reducers/tabsReducer';
-import tabs from '../../states/tabState';
 import OsiTabs from '../OsiTabs/OsiTabs';
 import OsiTab from '../OsiTab/OsiTab';
 
 import './Tabs.css';
 
-function mappedTabs(tabs: TabType[]) {
-  return tabs.map((tab) => (
-    <OsiTabs key={tab.id} id={tab.id} label={tab.label}>
-      {tab.children &&
-        tab.children.map((child) => {
-          return (
-            <OsiTab
-              key={child.id}
-              id={child.id}
-              label={child.label}
-              // isActive={child.isActive}
-              // onClick={() =>
-              //   tabsDispatch({
-              //     type: TABS_ACTION_TYPES.TOGGLE_ACTIVE,
-              //     payload: {id: child.id}
-              //   })
-              // }
-            >
-              {child.children && child.isActive && mappedTabs(child.children)}
-            </OsiTab>
-          );
-        })}
-    </OsiTabs>
-  ));
-}
-
 export default function Tabs() {
-  // const {tabs, tabsDispatch} = useGlobalContext();
-
-  // useEffect(() => {
-  //   tabsDispatch({type: TABS_ACTION_TYPES.TOGGLE_ACTIVE});
-  // }, []);
-
-  return <>{tabs.length > 0 && mappedTabs(tabs)}</>;
+  return (
+    <OsiTabs id="tabs_0" label="Root tab bar">
+      <OsiTab id="tab_1" label="Tab 1">
+        <OsiTabs id="tabs_1" label="Tab bar1">
+          <OsiTab id="tab_1_1" label="Tab 1.1">
+            <OsiTabs id="tabs_1_1" label="Tab bar1.1">
+              <OsiTab id="tab_1_1_1" label="Tab 1.1.1">
+                <OsiTabs id="tabs_1_1_1" label="Tab bar1.1.1">
+                  <OsiTab id="tab_1_1_1_1" label="Tab 1.1.1.1">
+                    <OsiTabs id="tabs_1_1_1_1" label="Tab bar1.1.1.1">
+                      <OsiTab id="tab_1_1_1_1_1" label="Tab 1.1.1.1.1"></OsiTab>
+                      <OsiTab id="tab_1_1_1_1_2" label="Tab 1.1.1.1.2"></OsiTab>
+                    </OsiTabs>
+                  </OsiTab>
+                  <OsiTab id="tab_1_1_1_2" label="Tab 1.1.1.2">
+                    <OsiTabs id="tabs_1_1_1_2" label="Tab bar1.1.1.2">
+                      <OsiTab id="tab_1_1_1_2_1" label="Tab 1.1.1.2.1"></OsiTab>
+                      <OsiTab id="tab_1_1_1_2_2" label="Tab 1.1.1.2.2"></OsiTab>
+                    </OsiTabs>
+                  </OsiTab>
+                </OsiTabs>
+              </OsiTab>
+              <OsiTab id="tab_1_1_2" label="Tab 1.1.2">
+                <OsiTabs id="tabs_1_1_2" label="Tab bar1.1.2">
+                  <OsiTab id="tab_1_1_2_1" label="Tab 1.1.2.1"></OsiTab>
+                  <OsiTab id="tab_1_1_2_2" label="Tab 1.1.2.2"></OsiTab>
+                </OsiTabs>
+              </OsiTab>
+              <OsiTab id="tab_1_1_3" label="Tab 1.1.3">
+                <OsiTabs id="tabs_1_1_3" label="Tab bar1.1.3">
+                  <OsiTab id="tab_1_1_3_1" label="Tab 1.1.3.1"></OsiTab>
+                  <OsiTab id="tab_1_1_3_2" label="Tab 1.1.3.2"></OsiTab>
+                  <OsiTab id="tab_1_1_3_3" label="Tab 1.1.3.3"></OsiTab>
+                </OsiTabs>
+              </OsiTab>
+            </OsiTabs>
+          </OsiTab>
+          <OsiTab id="tab_1_2" label="Tab 1.2">
+            <OsiTabs id="tabs_1_2" label="Tab bar1.2">
+              <OsiTab id="tab_1_2_1" label="Tab 1.2.1"></OsiTab>
+              <OsiTab id="tab_1_2_2" label="Tab 1.2.2"></OsiTab>
+              <OsiTab id="tab_1_2_3" label="Tab 1.2.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+        </OsiTabs>
+      </OsiTab>
+      <OsiTab id="tab_2" label="Tab 2">
+        <OsiTabs id="tabs_2" label="Tab bar2">
+          <OsiTab id="tab_2_1" label="Tab 2.1">
+            <OsiTabs id="tabs_2_1" label="Tab bar2.1">
+              <OsiTab id="tab_2_1_1" label="Tab 2.1.1"></OsiTab>
+              <OsiTab id="tab_2_1_2" label="Tab 2.1.2"></OsiTab>
+              <OsiTab id="tab_2_1_3" label="Tab 2.1.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+          <OsiTab id="tab_2_2" label="Tab 2.2">
+            <OsiTabs id="tabs_2_2" label="Tab bar2.2">
+              <OsiTab id="tab_2_2_1" label="Tab 2.2.1"></OsiTab>
+              <OsiTab id="tab_2_2_2" label="Tab 2.2.2"></OsiTab>
+              <OsiTab id="tab_2_2_3" label="Tab 2.2.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+          <OsiTab id="tab_2_3" label="Tab 2.3">
+            <OsiTabs id="tabs_2_3" label="Tab bar2.3">
+              <OsiTab id="tab_2_3_1" label="Tab 2.3.1"></OsiTab>
+              <OsiTab id="tab_2_3_2" label="Tab 2.3.2"></OsiTab>
+              <OsiTab id="tab_2_3_3" label="Tab 2.3.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+        </OsiTabs>
+      </OsiTab>
+      <OsiTab id="tab_3" label="Tab 3">
+        <OsiTabs id="tabs_3" label="Tab bar3">
+          <OsiTab id="tab_3_1" label="Tab 3.1">
+            <OsiTabs id="tabs_3_1" label="Tab bar3.1">
+              <OsiTab id="tab_3_1_1" label="Tab 3.1.1"></OsiTab>
+              <OsiTab id="tab_3_1_2" label="Tab 3.1.2"></OsiTab>
+              <OsiTab id="tab_3_1_3" label="Tab 3.1.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+          <OsiTab id="tab_3_2" label="Tab 3.2">
+            <OsiTabs id="tabs_3_2" label="Tab bar3.2">
+              <OsiTab id="tab_3_2_1" label="Tab 3.2.1"></OsiTab>
+              <OsiTab id="tab_3_2_2" label="Tab 3.2.2"></OsiTab>
+              <OsiTab id="tab_3_2_3" label="Tab 3.2.3"></OsiTab>
+            </OsiTabs>
+          </OsiTab>
+        </OsiTabs>
+      </OsiTab>
+    </OsiTabs>
+  );
 }

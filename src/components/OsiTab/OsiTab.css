@@ -1,23 +1,27 @@
-.tab__title {
+:root {
+  --color-link: rgb(0, 157, 255);
+}
+
+.tab {
   display: inline-block;
   padding: 0.7rem 1rem 0.3rem;
-  color: rgb(0, 157, 255);
-  cursor: pointer; 
+  color: var(--color-link);
   border-bottom-style: solid;
-  border-bottom-width: 2px;  
+  border-bottom-width: 2px; 
   border-color: transparent;
 }
 
-.tab__title:hover {
+.tab:hover {
+  color: var(--color-link);
   background-color: rgb(243, 243, 243);
 }
 
-.tab__title.active {
+.tab.active {
   color: black;
   background-color: rgb(190, 190, 190);
-  border-color: rgb(0, 157, 255);  
+  border-color: var(--color-link);
 }
 
-.tab__title.active:hover {
+.tab.active:hover {
     background-color: rgb(168, 167, 167);
 }

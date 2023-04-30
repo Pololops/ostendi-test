@@ -1,30 +1,36 @@
-// import {TABS_ACTION_TYPES} from '../../reducers/tabsReducer';
-// import {useGlobalContext} from '../../hooks/useGlobalContext';
+import {Children, cloneElement, isValidElement, useEffect, useMemo, useState} from 'react';
+import {NavLink} from 'react-router-dom';
 
 import './OsiTab.css';
-import {NavLink} from 'react-router-dom';
 
 type Props = {
   id: string;
+  parentId?: string;
   label: string;
   children?: React.ReactNode;
 };
 
-export default function OsiTab({id, label, children}: Props) {
-  // const {tabsDispatch} = useGlobalContext();
-
-  // const handleClick = (event: any) => {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   tabsDispatch({type: TABS_ACTION_TYPES.TOGGLE_ACTIVE, payload: {id}});
-  // };
+export default function OsiTab({id, label, children, parentId}: Props) {
+  const relativePath = `${parentId}/${id}`;
 
   return (
-    <li id={id} className="tab">
-      <NavLink to={id} className="tab__title">
+    <>
+      <NavLink
+        to={relativePath}
+        id={id}
+        className='tab'
+      >
         {label}
       </NavLink>
-      {children}
-    </li>
+      {children &&
+        Children.map(children, (child) => {
+          if (!isValidElement(child)) return child;
+          return cloneElement(child, {
+            ...child.props,
+            parentId: relativePath,
+            key: child.props.id
+          });
+        })}
+    </>
   );
 }
