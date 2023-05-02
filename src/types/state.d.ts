@@ -1,8 +1,11 @@
 // import { ACTION_TYPES } from "../reducer/tabsReducer";
 
-type TabType = {
+type LinkSign = {
   id: string;
   label: string;
-  isActive?: boolean;
-  children?: TabType[];
+  path: string;
+  key: string;
 };
+
+type State = LinkSign[] | [];
+

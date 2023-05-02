@@ -23,7 +23,12 @@ export default function OsiTab({
   const location = useLocation();
   const relativePath = `${parentPath}/${id}`;
 
-  const linkSignature = {id, label, path: relativePath};
+  const linkSignature: LinkSign = {
+    id,
+    label,
+    path: relativePath,
+    key: location.state && 'key' in location.state.at(-1) ? location.state.at(-1).key + 1 : '1'
+  };
 
   return children ? (
     <>
