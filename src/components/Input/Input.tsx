@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function Input({name, value, onChange}: Props) {
-  return <input type="text" name={name} value={value} onChange={onChange} />;
+  return <input type="text" title="path" name={name} value={value} onChange={onChange} />;
 }

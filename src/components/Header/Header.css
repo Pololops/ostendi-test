@@ -1,13 +1,12 @@
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   border-bottom: 1px solid lightgray;
   margin-bottom: calc(-2rem - 3px);
 }
 
 .header__form {
-  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
 }

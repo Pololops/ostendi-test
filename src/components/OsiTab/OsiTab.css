@@ -7,21 +7,26 @@
   padding: 0.7rem 1rem 0.3rem;
   color: var(--color-link);
   border-bottom-style: solid;
-  border-bottom-width: 2px; 
+  border-bottom-width: 2px;
   border-color: transparent;
 }
 
 .tab:hover {
-  color: var(--color-link);
+  color: black;
   background-color: rgb(243, 243, 243);
 }
 
-.tab.active {
+.tab--pending {
+  background-color: rgb(253, 43, 78);
+}
+
+.tab--active {
   color: black;
   background-color: rgb(190, 190, 190);
   border-color: var(--color-link);
 }
 
-.tab.active:hover {
-    background-color: rgb(168, 167, 167);
+.tab--active:hover {
+  color: white;
+  background-color: rgb(168, 167, 167);
 }
