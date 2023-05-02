@@ -1,8 +1,6 @@
 import {Children, isValidElement} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
-import './Tabs.css';
-
 type Props = {
   children?: React.ReactNode;
 };
