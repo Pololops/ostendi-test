@@ -4,8 +4,12 @@ type LinkSign = {
   id: string;
   label: string;
   path: string;
-  key: string;
+  key: number;
 };
 
 type State = LinkSign[] | [];
 
+type MemoryState = {
+  backState: State;
+  forwardState: State;
+};

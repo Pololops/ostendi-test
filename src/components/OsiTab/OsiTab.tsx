@@ -1,6 +1,11 @@
+import {useContext} from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 
+import {MemoryContext} from '../../contexts/memoryContext';
+
 import {parseChildren} from '../../utils/parseChildren';
+import { generateLinkSignature } from '../../utils/generateLinkPath';
+
 import Panel from '../Panel/Panel';
 
 import './OsiTab.css';
@@ -20,14 +25,23 @@ export default function OsiTab({
   parentPath,
   isTabActive
 }: Props) {
+  const {backState, setBackState, setForwardState, setStateSplitIndex} =
+    useContext(MemoryContext);
+
   const location = useLocation();
   const relativePath = `${parentPath}/${id}`;
+    const linkSignature = generateLinkSignature(
+      id,
+      label,
+      relativePath,
+      backState
+    );
 
-  const linkSignature: LinkSign = {
-    id,
-    label,
-    path: relativePath,
-    key: location.state && 'key' in location.state.at(-1) ? location.state.at(-1).key + 1 : '1'
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement> = () => {
+    setBackState((prev) => [...prev, linkSignature]);
+    location.state = backState
+    setForwardState([]);
+    setStateSplitIndex(-1);
   };
 
   return children ? (
@@ -38,7 +52,7 @@ export default function OsiTab({
         className={({isActive}) =>
           isActive || isTabActive ? 'tab tab--active' : 'tab'
         }
-        state={location.state ? [...location.state, linkSignature] : [linkSignature]}
+        onClick={handleClick}
       >
         {label}
       </NavLink>

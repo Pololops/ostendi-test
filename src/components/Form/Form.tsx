@@ -1,32 +1,22 @@
-import {useEffect, useMemo, useState} from 'react';
-import {useLocation, useMatch, useNavigate} from 'react-router-dom';
+import {useEffect, useMemo, useState, useContext} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+
+import {MemoryContext} from '../../contexts/memoryContext';
+
+import {findPathInStateByKey} from '../../utils/stateUtils';
 
 import Input from '../Input/Input';
 import Select from '../Select/Select';
-
-type BackState = State;
-type ForwardState = State;
-type HistoryState = {
-  backState: BackState;
-  forwardState: ForwardState;
-};
-
-const splitState = (state: State, index: number): HistoryState => {
-  const indexToSplit = index >= 0 ? index : state.length;
-  const backState = state.slice(0, indexToSplit);
-  const forwardState = state.splice(indexToSplit + 1);
-  return {backState, forwardState};
-};
+import { generateLinkSignature } from '../../utils/generateLinkPath';
 
 export default function Form() {
+  const {backState, forwardState, setBackState, setForwardState, setStateSplitIndex} =
+    useContext(MemoryContext);
+
   const location = useLocation();
   const navigate = useNavigate();
+
   const [inputValue, setInputValue] = useState('');
-  const [stateIndex, setStateIndex] = useState<number>(-1);
-  const [state, setState] = useState<HistoryState>({
-    backState: [],
-    forwardState: []
-  });
 
   const displayPath = useMemo(() => {
     const isRootPath = location.pathname.endsWith('tabs_0');
@@ -49,50 +39,29 @@ export default function Form() {
   ) => {
     event.preventDefault();
     const {value} = event.target;
-    const joinState = [...state.backState, ...state.forwardState];
-    const index = joinState.findIndex(({key}) => key === value);
+    const {path, index} = findPathInStateByKey(
+      [...backState, ...forwardState],
+      parseInt(value)
+    );
 
-    setStateIndex(index);
-    navigate(joinState[index].path, {
-      state: joinState
-    });
+    navigate(path);
+    setStateSplitIndex(index);
   };
 
   const submitFormHandle: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     const id = inputValue.split('/').at(-1);
+
     if (!id) return;
+
     const label = id.replace('_', ' ');
-    const linkSignature: LinkSign = {
-      id,
-      label: label.charAt(0).toUpperCase() + label.slice(1),
-      path: inputValue,
-      key:
-        location.state && 'key' in location.state.at(-1)
-          ? location.state.at(-1).key + 1
-          : '1'
-    };
+    const linkSignature = generateLinkSignature(id, label, inputValue, backState)
 
-    navigate(inputValue, {
-      state: location.state
-        ? [...location.state, linkSignature]
-        : [linkSignature]
-    });
+    setBackState((prev) => [...prev, linkSignature]);
+    setForwardState([]);
+    setStateSplitIndex(-1);
+    navigate(inputValue);
   };
-
-  useEffect(() => {
-    if (location.state !== null) {
-      const newState = splitState(location.state, stateIndex);
-      setState(newState);
-    }
-  }, [location.pathname, location.state, stateIndex]);
-
-  useEffect(() => {
-    const joinState = [...state.backState, ...state.forwardState];
-    const newState = splitState(joinState, stateIndex);
-
-    setState(newState);
-  }, [stateIndex]);
 
   useEffect(() => {
     setInputValue(displayPath);
@@ -100,14 +69,10 @@ export default function Form() {
 
   return (
     <form className="header__form" onSubmit={submitFormHandle}>
-      <Select
-        type="back"
-        state={state.backState}
-        onChange={handleSelectChange}
-      />
+      <Select type="back" state={backState.slice(0, backState.length - 1 || 0)} onChange={handleSelectChange} />
       <Select
         type="forward"
-        state={state.forwardState}
+        state={forwardState}
         onChange={handleSelectChange}
       />
       <Input name="path" value={inputValue} onChange={handleInputChange} />
